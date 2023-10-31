@@ -16,4 +16,6 @@ fn print_mandelbrot_info() {
     println!("\tRange ({} + {}i) to ({} + {}i)", REAL_MIN, IMAG_MIN, REAL_MAX, IMAG_MAX);
     println!("\tResolution {} x {}", WIDTH, HEIGHT);
     println!("\t{} Iterations", ITERATIONS);
+    println!("\tTo {}", IMAGE_PATH);
+    println!("\tdata size of {} Vec entries", DATA_SIZE);
 }
