@@ -17,5 +17,4 @@ fn print_mandelbrot_info() {
     println!("\tResolution {} x {}", WIDTH, HEIGHT);
     println!("\t{} Iterations", ITERATIONS);
     println!("\tTo {}", IMAGE_PATH);
-    println!("\tdata size of {} Vec entries", DATA_SIZE);
 }
