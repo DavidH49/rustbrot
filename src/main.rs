@@ -12,8 +12,11 @@ fn main() {
 
 
 fn print_mandelbrot_info() {
+    let range_min = Complex::new(REAL_MIN, IMAG_MIN);
+    let range_max = Complex::new(REAL_MAX, IMAG_MAX);
+
     println!("Drawing Mandelbrot with settings:");
-    println!("\tRange ({} + {}i) to ({} + {}i)", REAL_MIN, IMAG_MIN, REAL_MAX, IMAG_MAX);
+    println!("\tRange ({}) to ({})", range_min, range_max);
     println!("\tResolution {} x {}", WIDTH, HEIGHT);
     println!("\t{} Iterations", ITERATIONS);
     println!("\tTo {}", IMAGE_PATH);

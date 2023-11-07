@@ -10,10 +10,10 @@ pub fn draw_mandelbrot() -> Vec<u8> {
 
     for im in 0..HEIGHT {
         for re in 0..WIDTH {
-            let c = get_grid_position(re, im);
-            let m = z(c);
+            let c = get_grid_position(&re, &im);
+            let m = z(&c);
 
-            let color = get_color(m);
+            let color = get_color(&m);
             image_data.push(color); // Red
             image_data.push(color); // Green
             image_data.push(color); // Blue
@@ -25,13 +25,13 @@ pub fn draw_mandelbrot() -> Vec<u8> {
 }
 
 
-// Repeats (z = z² + c) until |z| > 2 or n >= ITERATIONS; Then returns n
-pub fn z(c: Complex) -> usize {
+// Initializes z at (0 + 0i); Then repeats (z = z² + c) until |z| > 2 or n >= ITERATIONS; Then returns n
+pub fn z(c: &Complex) -> usize {
     let mut z = Complex::zero();
     let mut n = 0;
 
     while z.abs() <= Complex::uniform(THRESHOLD) && n < ITERATIONS {
-        z = z * z + c;
+        z = z * z + *c;
         n += 1;
     }
 
@@ -39,16 +39,16 @@ pub fn z(c: Complex) -> usize {
 }
 
 
-pub fn get_grid_position(re: usize, im: usize) -> Complex {
+pub fn get_grid_position(re: &usize, im: &usize) -> Complex {
     Complex::new(
-        REAL_MIN as f64 + (re as f64 / WIDTH as f64) * (REAL_MAX - REAL_MIN) as f64,
-        IMAG_MIN as f64 + (im as f64 / HEIGHT as f64) * (IMAG_MAX - IMAG_MIN) as f64
+        REAL_MIN + (*re as f64 / WIDTH as f64) * (REAL_MAX - REAL_MIN),
+        IMAG_MIN + (*im as f64 / HEIGHT as f64) * (IMAG_MAX - IMAG_MIN)
     )
 }
 
 
 // Calculates the color for parameter m; 255 is black, 0 is white
-pub fn get_color(m: usize) -> u8 {
+pub fn get_color(m: &usize) -> u8 {
     (COLOR_SPACE - (m * COLOR_SPACE / ITERATIONS)) as u8
 }
 
