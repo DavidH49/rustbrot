@@ -54,13 +54,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "baf1de4339761588bc0619e3cbc0120ee582ebb74b53b4efbf79117bd2da40fd"
 
 [[package]]
-name = "complex_type"
-version = "0.1.0"
-dependencies = [
- "icecream",
-]
-
-[[package]]
 name = "crc32fast"
 version = "1.3.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -120,7 +113,6 @@ checksum = "a08173bc88b7955d1b3145aa561539096c421ac8debde8cbc3612ec635fee29b"
 name = "mandelbrot"
 version = "0.1.0"
 dependencies = [
- "complex_type",
  "icecream",
  "png",
 ]

@@ -1,6 +1,5 @@
 # rustbrot
-Simple Mandelbrot renderer in Rust  
-Requires my implementation of complex numbers.
+Simple Mandelbrot renderer in Rust
 
 ## main.rs
 Contains the `main` function and a function that prints information about the current configuration.
@@ -26,5 +25,4 @@ Contains all the settings about how the mandelbrot is drawn.
 * Path to where the image is saved
 
 # TODO
-* Get rid of my complex number implementation and just add a ´Complex´ struct to the project
 * Maybe add multithreading

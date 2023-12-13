@@ -1,8 +1,5 @@
-use complex_type::complex::Complex;
-use crate::settings::*;
-use std::fs::File;
-use std::io::BufWriter;
-use std::path::Path;
+use crate::{complex::Complex, settings::*};
+use std::{fs::File, io::BufWriter, path::Path};
 
 // Draws, as the name suggests, the mandelbrot and returns a Vec<u8> for exporting
 pub fn draw_mandelbrot() -> Vec<u8> {
@@ -13,11 +10,13 @@ pub fn draw_mandelbrot() -> Vec<u8> {
             let c = get_grid_position(&re, &im);
             let m = z(&c);
 
-            let color = get_color(&m);
-            image_data.push(color); // Red
-            image_data.push(color); // Green
-            image_data.push(color); // Blue
-            image_data.push(255);   // Alpha
+            let col = get_color(&m);
+            let col_vec = [col, col, col, 255]; // RGBA
+
+            let _: Vec<_> = col_vec
+                .iter()
+                .map(|x| image_data.push(*x))
+                .collect();
         }
     }
 
@@ -57,13 +56,12 @@ pub fn get_color(m: &usize) -> u8 {
 pub fn save_render_as_png(image_data: Vec<u8>) {
     let path = Path::new(IMAGE_PATH);
     let file = File::create(path).unwrap();
-    let ref mut w = BufWriter::new(file);
+    let w = &mut BufWriter::new(file);
 
     let mut encoder = png::Encoder::new(w, WIDTH as u32, HEIGHT as u32);
     encoder.set_color(png::ColorType::Rgba);
     encoder.set_depth(png::BitDepth::Eight);
-    //encoder.set_source_gamma(png::ScaledFloat::new(1.0 / 2.2));
 
     let mut writer = encoder.write_header().unwrap();
-    writer.write_image_data(&*image_data).unwrap();
+    writer.write_image_data(&image_data).unwrap();
 }

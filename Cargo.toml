@@ -8,6 +8,3 @@ edition = "2021"
 [dependencies]
 icecream = "0.1.0"
 png = "0.17.10"
-
-[dependencies.complex_type]
-path = "../complex_type"

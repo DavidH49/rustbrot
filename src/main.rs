@@ -1,7 +1,7 @@
-pub use complex_type::complex::Complex;
-pub use icecream::ic;
-use mandelbrot::renderer as r;
-use mandelbrot::settings::*;
+use mandelbrot::{complex::Complex, renderer as r, settings::*};
+
+#[allow(unused_imports)]
+use icecream::ic;
 
 fn main() {
     print_mandelbrot_info();
