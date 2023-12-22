@@ -1,13 +1,16 @@
 use mandelbrot::{complex::Complex, renderer as r, settings::*};
+use std::thread;
 
 #[allow(unused_imports)]
 use icecream::ic;
 
 fn main() {
-    print_mandelbrot_info();
+    thread::spawn(|| {
+        let image_data = r::draw_mandelbrot();
+        r::save_render_as_png(image_data);
+    });
 
-    let image_data = r::draw_mandelbrot();
-    r::save_render_as_png(image_data);
+    print_mandelbrot_info();
 }
 
 
