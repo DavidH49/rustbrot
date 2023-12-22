@@ -24,5 +24,7 @@ Contains all the settings about how the mandelbrot is drawn.
 * Drawing range on the complex plane
 * Path to where the image is saved
 
-# TODO
-* Maybe add multithreading
+
+## Multithreading implementation
+#### Concept
+Split up the entire grid into smaller parts and assign each part to a thread
