@@ -1,6 +1,6 @@
 pub const ITERATIONS: usize = 80;
 pub const THRESHOLD: f64 = 2.0;
-pub const COLOR_SPACE: usize = 255;
+pub const COLOR_RANGE: usize = 255;
 
 // Aspect ratio is based on the complex range to render
 // Used a terrible way of getting an absolute value here that somewhat works

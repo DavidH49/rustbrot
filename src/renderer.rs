@@ -8,7 +8,7 @@ pub fn draw_mandelbrot() -> Vec<u8> {
     for im in 0..HEIGHT {
         for re in 0..WIDTH {
             let c = get_grid_position(&re, &im);
-            let m = z(&c);
+            let m = iterate_z(&c);
 
             let col = get_color(&m);
             let col_vec = [col, col, col, 255]; // RGBA
@@ -25,7 +25,7 @@ pub fn draw_mandelbrot() -> Vec<u8> {
 
 
 // Initializes z at (0 + 0i); Then repeats (z = z² + c) until |z| > 2 or n >= ITERATIONS; Then returns n
-pub fn z(c: &Complex) -> usize {
+pub fn iterate_z(c: &Complex) -> usize {
     let mut z = Complex::zero();
     let mut n = 0;
 
@@ -38,6 +38,7 @@ pub fn z(c: &Complex) -> usize {
 }
 
 
+// Calculates where in the pixel raster a complex number is
 pub fn get_grid_position(re: &usize, im: &usize) -> Complex {
     Complex::new(
         REAL_MIN + (*re as f64 / WIDTH as f64) * (REAL_MAX - REAL_MIN),
@@ -48,7 +49,7 @@ pub fn get_grid_position(re: &usize, im: &usize) -> Complex {
 
 // Calculates the color for parameter m; 255 is black, 0 is white
 pub fn get_color(m: &usize) -> u8 {
-    (COLOR_SPACE - (m * COLOR_SPACE / ITERATIONS)) as u8
+    (COLOR_RANGE - (m * COLOR_RANGE / ITERATIONS)) as u8
 }
 
 
