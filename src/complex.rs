@@ -3,7 +3,7 @@ use std::{
     ops
 };
 
-#[derive(Debug, PartialEq, PartialOrd)]
+#[derive(Copy, Clone, Debug, PartialEq, PartialOrd)]
 pub struct Complex {
     re: f64,
     im: f64
@@ -53,18 +53,6 @@ impl ops::Mul<Complex> for Complex {
             self.re * rhs.im + self.im * rhs.re,
         )
     }
-}
-
-
-impl Clone for Complex {
-    fn clone(&self) -> Self {
-        *self
-    }
-}
-
-
-impl Copy for Complex {
-
 }
 
 
