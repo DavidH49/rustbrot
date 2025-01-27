@@ -1,12 +1,19 @@
+use std::time::Instant;
 use mandelbrot::{complex::Complex, renderer as r, settings::*};
 
 #[allow(unused_imports)]
 use icecream::ic;
 
+
 fn main() {
     print_mandelbrot_info();
 
+    let now = Instant::now();
     let image_data = r::draw_mandelbrot();
+    let elapsed = now.elapsed();
+    println!("Elapsed: {:.2?}", elapsed);
+
+
     r::save_render_as_png(image_data);
 }
 
